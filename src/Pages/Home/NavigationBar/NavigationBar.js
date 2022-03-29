@@ -1,14 +1,15 @@
 import React from 'react';
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import logo from "../../../Images/logo.png";
 
 const navigation = [
-  { name: 'Home', href: '/4r', current: true },
+  { name: 'Home', href: '/', current: true },
   { name: 'Team', href: '/team', current: false },
   { name: 'Projects', href: '#', current: false },
   { name: 'Calendar', href: '#', current: false },
+  { name: 'Login', href: '/login', current: false },
 ]
 
 function classNames(...classes) {

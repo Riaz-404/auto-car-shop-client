@@ -11,7 +11,7 @@ const Product = ({product}) => {
                   />
                 </div>
                 <h2 className="mt-6 text-xl text-gray-600">
-                <span className="absolute inset-0" />
+                <span />
                   {name}
 
 
