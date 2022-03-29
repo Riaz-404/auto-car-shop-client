@@ -1,5 +1,8 @@
 import React from 'react';
-import { LockClosedIcon } from '@heroicons/react/solid'
+import { LockClosedIcon } from '@heroicons/react/solid';
+import googleSvg from '../../../Images/googleLogo.svg';
+import facebookSvg from '../../../Images/FacebookLogo.svg';
+import githubSvg from '../../../Images/githubLogo.svg';
 
 const LoginForm = () => {
     return (
@@ -8,8 +11,13 @@ const LoginForm = () => {
                 <div className="max-w-md w-full space-y-8">
                     <div>
 
-                        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Log in to your account</h2>
-                        
+                        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 pb-5">Log in to your account</h2>
+                        <p className="mt-2 text-center text-sm text-gray-600">
+                            
+                            <a href="/signup" className="font-medium text-indigo-600 hover:text-indigo-500">
+                                New User? Create an account
+                            </a>
+                        </p>
                     </div>
                     <form className="mt-8 space-y-6" action="#" method="POST">
                         <input type="hidden" name="remember" defaultValue="true" />
@@ -45,7 +53,7 @@ const LoginForm = () => {
                         </div>
 
                         <div>
-                            
+
 
                             <div className="text-sm text-center">
                                 <a href="google.com" className="font-medium text-indigo-600 hover:text-indigo-500">
@@ -64,6 +72,40 @@ const LoginForm = () => {
                                 </span>
                                 Log in
                             </button>
+                        </div>
+
+                        <p className="mt-2 text-center text-sm text-gray-600">
+                            or Continue with:
+                            
+                        </p>
+
+
+                        <div className='grid grid-cols-3 gap-3'> 
+                        <button
+                                type="submit"
+                                className="group relative w-full flex justify-center py-2 px-4 border border-solid border-indigo-600 text-sm font-medium rounded-md  hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            >
+                                
+                            <img className='h-5' src={googleSvg} alt="googleLogo"/>
+                            </button>
+                        <button
+                                type="submit"
+                                className="group relative w-full flex justify-center py-2 px-4 border border-solid border-indigo-600 text-sm font-medium rounded-md  hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            >
+                                
+                                <img className='h-5' src={facebookSvg} alt="facebookLogo"/>
+
+                            </button>
+                        <button
+                                type="submit"
+                                className="group relative w-full flex justify-center py-2 px-4 border border-solid border-indigo-600 text-sm font-medium rounded-md  hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            >
+                                
+                                <img className='h-5' src={githubSvg} alt="githubLogo"/>
+
+                            </button>
+
+
                         </div>
                     </form>
                 </div>
