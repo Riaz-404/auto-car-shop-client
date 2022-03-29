@@ -1,8 +1,8 @@
 import React from 'react';
+import Footer from '../../Shared/Footer/Footer';
 import Banner from '../Banner/Banner';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import Products from '../Products/Products/Products';
-import Footer from '../Shared/Footer/Footer/Footer';
 
 const Home = () => {
     return (
