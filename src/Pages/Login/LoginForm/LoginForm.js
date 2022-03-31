@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LockClosedIcon } from '@heroicons/react/solid';
 import googleSvg from '../../../Images/googleLogo.svg';
 import facebookSvg from '../../../Images/FacebookLogo.svg';
@@ -6,11 +6,22 @@ import githubSvg from '../../../Images/githubLogo.svg';
 import useAuth from '../../../hooks/useAuth';
 
 const LoginForm = () => {
-    const { signInWithGoogle } = useAuth();
+    const {user, signInWithGoogle, loginWithEmail, signInWithFacebook } = useAuth();
+    const [formData, setFormData] = useState({});
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        loginWithEmail(formData.email, formData.password);
+        console.log(user);
+    }
     const handleGoogleSignIn = () => {
         console.log("clicked")
-        console.log(useAuth)
+        
         signInWithGoogle();
+        console.log(user);
     }
     return (
         <>
@@ -33,7 +44,7 @@ const LoginForm = () => {
                                 <label htmlFor="email-address" className="sr-only">
                                     Email address
                                 </label>
-                                <input
+                                <input onChange={handleChange}
                                     id="email-address"
                                     name="email"
                                     type="email"
@@ -47,7 +58,7 @@ const LoginForm = () => {
                                 <label htmlFor="password" className="sr-only">
                                     Password
                                 </label>
-                                <input
+                                <input onChange={handleChange}
                                     id="password"
                                     name="password"
                                     type="password"
@@ -70,7 +81,7 @@ const LoginForm = () => {
                         </div>
 
                         <div>
-                            <button
+                            <button onClick={handleSubmit}
                                 type="submit"
                                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             >
@@ -96,7 +107,7 @@ const LoginForm = () => {
                                 
                             <img className='h-5' src={googleSvg} alt="googleLogo"/>
                             </button>
-                        <button
+                        <button onClick={() => {signInWithFacebook()}}
                                 type="submit"
                                 className="group relative w-full flex justify-center py-2 px-4 border border-solid border-indigo-600 text-sm font-medium rounded-md  hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             >

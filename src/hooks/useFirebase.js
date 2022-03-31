@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, getAuth, signInWithPopup, onAuthStateChanged } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, FacebookAuthProvider } from "firebase/auth";
 import { useEffect, useState } from "react";
 
 
@@ -8,49 +8,104 @@ initializeFirebase();
 
 const useFirebase = () => {
     const [user, setUser] = useState({});
+
     const auth = getAuth();
 
+
+    //Google Authentication
     const googleProvider = new GoogleAuthProvider();
 
     const signInWithGoogle = () => {
         signInWithPopup(auth, googleProvider)
             .then((result) => {
-                // This gives you a Google Access Token. You can use it to access the Google API.
-                const credential = GoogleAuthProvider.credentialFromResult(result);
-                const token = credential.accessToken;
-                // The signed-in user info.
-                const User = result.user;
-                // ...
-                console.log(User);
+
             }).catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+
+
+                alert(errorCode, errorMessage);
+            });
+    }
+
+    //sign-up with email and password
+    const signUpWithEmail = (email, password, name) => {
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                updateProfile(auth.currentUser, {
+                    displayName: name
+                })
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ..
+                alert(errorCode, errorMessage);
+            });
+    }
+
+    //login with email and password
+    const loginWithEmail = (email, password) => {
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                alert(errorCode, errorMessage);
+            });
+    }
+
+    //facebook authentication
+    const facebookProvider = new FacebookAuthProvider();
+    const signInWithFacebook = () => {
+        signInWithPopup(auth, facebookProvider)
+            .then((result) => {
+                
+            })
+            .catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 // The email of the user's account used.
                 const email = error.email;
                 // The AuthCredential type that was used.
-                const credential = GoogleAuthProvider.credentialFromError(error);
-                // ...
+                const credential = FacebookAuthProvider.credentialFromError(error);
 
+                // ...
                 console.log(errorCode, errorMessage, email, credential);
             });
     }
 
-    // useEffect (() => {
-    //     const unsubscibe = onAuthStateChanged((user) => {
-    //         if (user) {
-    //             setUser(user);
-    //         } else {
-    //             setUser({});
-    //         }
-    //     });
-    //     return ()=>unsubscibe;
-    // }, [auth])
+    //logout
+    const logout = () => {
+        signOut(auth).then(() => {
+            // Sign-out successful.
+        }).catch((error) => {
+            // An error happened.
+        });
+    }
+
+    //setting user state
+    useEffect(() => {
+        const unsubscibed = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setUser(user);
+            } else {
+                setUser({});
+            }
+        });
+        return () => unsubscibed;
+    }, [auth])
 
     return {
         user,
         signInWithGoogle,
-
+        signUpWithEmail,
+        loginWithEmail,
+        signInWithFacebook,
+        logout
     }
 };
 
