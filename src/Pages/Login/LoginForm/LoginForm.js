@@ -3,8 +3,15 @@ import { LockClosedIcon } from '@heroicons/react/solid';
 import googleSvg from '../../../Images/googleLogo.svg';
 import facebookSvg from '../../../Images/FacebookLogo.svg';
 import githubSvg from '../../../Images/githubLogo.svg';
+import useAuth from '../../../hooks/useAuth';
 
 const LoginForm = () => {
+    const { signInWithGoogle } = useAuth();
+    const handleGoogleSignIn = () => {
+        console.log("clicked")
+        console.log(useAuth)
+        signInWithGoogle();
+    }
     return (
         <>
             <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 md:mt-16">
@@ -80,9 +87,10 @@ const LoginForm = () => {
                         </p>
 
 
-                        <div className='grid grid-cols-3 gap-3'> 
-                        <button
-                                type="submit"
+                        
+                    </form>
+                    <div className='grid grid-cols-3 gap-3'> 
+                        <button onClick={handleGoogleSignIn}
                                 className="group relative w-full flex justify-center py-2 px-4 border border-solid border-indigo-600 text-sm font-medium rounded-md  hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             >
                                 
@@ -96,9 +104,7 @@ const LoginForm = () => {
                                 <img className='h-5' src={facebookSvg} alt="facebookLogo"/>
 
                             </button>
-                        <button
-                                type="submit"
-                                className="group relative w-full flex justify-center py-2 px-4 border border-solid border-indigo-600 text-sm font-medium rounded-md  hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        <button className="group relative w-full flex justify-center py-2 px-4 border border-solid border-indigo-600 text-sm font-medium rounded-md  hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             >
                                 
                                 <img className='h-5' src={githubSvg} alt="githubLogo"/>
@@ -107,7 +113,6 @@ const LoginForm = () => {
 
 
                         </div>
-                    </form>
                 </div>
             </div>
         </>
