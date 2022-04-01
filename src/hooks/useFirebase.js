@@ -1,5 +1,5 @@
 import { showNotification } from "@mantine/notifications";
-import { GoogleAuthProvider, getAuth, signInWithPopup, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, FacebookAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, FacebookAuthProvider, sendPasswordResetEmail } from "firebase/auth";
 import { useEffect, useState } from "react";
 
 
@@ -35,7 +35,7 @@ const useFirebase = () => {
                 notification("Success", "You are now signed in with Google", "green");
 
             }).catch((error) => {
-                const errorCode = error.code;
+                // const errorCode = error.code;
                 const errorMessage = error.message;
 
 
@@ -54,7 +54,7 @@ const useFirebase = () => {
                 notification("Success", "Created your account successfully", "green");
             })
             .catch((error) => {
-                
+
                 const errorMessage = error.message;
                 // ..
                 notification("Error", errorMessage, "red");
@@ -73,13 +73,33 @@ const useFirebase = () => {
                 notification("Success", "Successfully logged in", "green");
             })
             .catch((error) => {
-                const errorCode = error.code;
+                // const errorCode = error.code;
                 const errorMessage = error.message;
                 notification("Error", errorMessage, "red");
             })
             .finally(() => {
                 setLoading(false)
             });
+    }
+
+    //password reset
+    const passwordReset = (email) => {
+        setLoading(true);
+        sendPasswordResetEmail(auth, email)
+            .then(() => {
+                // Password reset email sent!
+                // ..
+                notification("Notification", "Password reset email sent to your email", "green");
+            })
+            .catch((error) => {
+                
+                const errorMessage = error.message;
+                // ..
+                notification("Error", errorMessage, "red");
+            })
+            .finally(() => {
+                setLoading(false)
+                });
     }
 
     //facebook authentication
@@ -132,6 +152,7 @@ const useFirebase = () => {
         signInWithGoogle,
         signUpWithEmail,
         loginWithEmail,
+        passwordReset,
         signInWithFacebook,
         logout
     }

@@ -75,7 +75,7 @@ const LoginForm = () => {
 
 
                             <div className="text-sm text-center">
-                                <a href="google.com" className="font-medium text-indigo-600 hover:text-indigo-500">
+                                <a href='/forgetpass' className="font-medium text-indigo-600 hover:text-indigo-500">
                                     Forgot your password?
                                 </a>
                             </div>
