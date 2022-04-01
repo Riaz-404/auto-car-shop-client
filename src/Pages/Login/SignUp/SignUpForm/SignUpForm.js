@@ -1,9 +1,11 @@
+import { Loader } from '@mantine/core';
+import { showNotification } from '@mantine/notifications';
 import React, { useState } from 'react';
 import useAuth from '../../../../hooks/useAuth';
 
 
 const SignUpForm = () => {
-    const { user, signUpWithEmail } = useAuth();
+    const { user, isLoading, signUpWithEmail } = useAuth();
     const [formData, setFormData] = useState({});
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -18,13 +20,24 @@ const SignUpForm = () => {
             console.log(user);
         }
         else {
-            alert("Password and Confirm Password do not match");
+
+            showNotification({
+                title: 'Bummer!',
+                message: 'Passwords do not match',
+                autoClose: 5000,
+                color: 'red',
+
+            });
         }
     }
 
     return (
         <>
             <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 md:mt-12">
+                {
+                    isLoading ?
+                    <Loader color="#1f2937" size="xl" />
+                :
                 <div className="max-w-md w-full space-y-8">
                     <div>
 
@@ -81,6 +94,7 @@ const SignUpForm = () => {
 
                     </form>
                 </div>
+                }
             </div>
         </>
     );

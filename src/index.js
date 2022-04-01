@@ -4,11 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { MantineProvider } from '@mantine/core';
+import { NotificationsProvider } from '@mantine/notifications';
 
 ReactDOM.render(
   <BrowserRouter>
-    <App />
-    </BrowserRouter>,
+    <MantineProvider>
+      <NotificationsProvider>
+        <App />
+      </NotificationsProvider>
+    </MantineProvider>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
