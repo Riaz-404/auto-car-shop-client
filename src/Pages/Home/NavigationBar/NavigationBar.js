@@ -9,7 +9,7 @@ import defaultAvater from '../../../Images/profile-picture.png'
 
 const navigation = [
     { name: 'Home', href: '/', current: true },
-    { name: 'Team', href: '/team', current: false },
+    { name: 'Cars', href: '/cars', current: false },
     { name: 'Projects', href: '#', current: false },
     { name: 'Calendar', href: '#', current: false },
 ]

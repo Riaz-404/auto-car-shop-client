@@ -1,6 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import AuthProvider from './Context/AuthProvider/AuthProvider';
+import CarDetails from './Pages/CarDetails/CarDetails/CarDetails';
+import Cars from './Pages/Cars/Cars/Cars';
 import Home from './Pages/Home/Home/Home';
 import ForgetPass from './Pages/Login/ForgetPass/ForgetPass';
 import Login from './Pages/Login/Login/Login';
@@ -14,6 +16,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/forgetpass" element={<ForgetPass />} />
+        <Route path="/cars" element={<Cars />}/>
+        <Route path="/cars/:id" element={<CarDetails />} />
       </Routes>
     </AuthProvider>
   );
