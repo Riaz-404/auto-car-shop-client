@@ -22,7 +22,7 @@ const Review = () => {
                             defaultValue={''}
                         />
                     </div>
-                    <button class="p-3 text-white bg-gray-900 hover:bg-gray-700 rounded-full">
+                    <button class="p-3 text-sm text-white bg-gray-900 hover:bg-gray-700 rounded-full">
                         Add review
                     </button>
                 </div>

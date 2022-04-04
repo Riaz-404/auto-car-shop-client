@@ -26,10 +26,18 @@ const Sidebar = () => {
                     <>
                         <hr />
                         <li className='py-2 list-none'>
-                            <ol className='p-3 text-center cursor-pointer hover:bg-gray-700 hover:text-white'>Manage All Orders</ol>
-                            <ol className='p-3 text-center cursor-pointer hover:bg-gray-700 hover:text-white'>Add A Product</ol>
-                            <ol className='p-3 text-center cursor-pointer hover:bg-gray-700 hover:text-white '>Make Admin</ol>
-                            <ol className='p-3 text-center cursor-pointer hover:bg-gray-700 hover:text-white '>Manage Products</ol>
+                            <Link to="manageorders">
+                                <ol className='p-3 text-center cursor-pointer hover:bg-gray-700 hover:text-white'>Manage All Orders</ol>
+                            </Link>
+                            <Link to="addproduct">
+                                <ol className='p-3 text-center cursor-pointer hover:bg-gray-700 hover:text-white'>Add A Product</ol>
+                            </Link>
+                            <Link to="makeadmin">
+                                <ol className='p-3 text-center cursor-pointer hover:bg-gray-700 hover:text-white '>Make Admin</ol>
+                            </Link>
+                            <Link to="manageproduct">
+                                <ol className='p-3 text-center cursor-pointer hover:bg-gray-700 hover:text-white '>Manage Products</ol>
+                            </Link>
                         </li>
                     </>
                     :
