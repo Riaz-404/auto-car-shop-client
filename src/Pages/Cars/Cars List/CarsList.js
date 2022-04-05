@@ -11,11 +11,11 @@ import { Link } from 'react-router-dom';
 
 
 const CarsList = ({ car }) => {
-    const { _id, name, price, image, deliveryTime, fuel } = car;
+    const { _id, name, price, image, deliveryTime, fuelTypes } = car;
     return (
         <div className='grid p-5 md:grid-cols-7 gap-4 sm: grid-cols-1'>
             <div className='col-span-2 relative w-full md:h-60 sm:h-50 bg-white rounded-lg overflow-hidden group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1'>
-                <Link to={`/cars/${_id}`}><img className="object-center" src={image} alt="" srcset="" /></Link>
+                <Link to={`/cars/${_id}`}><img className="object-center" src={`data:image/jpeg;base64,${image}`} alt="" srcset="" /></Link>
             </div>
 
             <div className="col-span-5 lg:flex lg:items-center lg:justify-between ">
@@ -35,8 +35,8 @@ const CarsList = ({ car }) => {
                         </div>
                         <div className="mt-2 flex items-center text-sm text-gray-500">
                             
-                                <img className='flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400' src={fuelicon}/>
-                                <p>{fuel}</p>
+                                <img className='flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400' src={fuelicon} alt="fuelicon"/>
+                                <p>{fuelTypes}</p>
                             
                         
                         </div>

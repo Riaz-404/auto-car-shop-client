@@ -6,7 +6,7 @@ const AddProduct = () => {
     const [price, setPrice] = useState('');
     const [fuelTypes, setFuelTypes] = useState('');
     const [deliveryTime, setDeliveryTime] = useState('');
-    const [about, setAbout] = useState('');
+    const [description, setDescription] = useState('');
     const [image, setImage] = useState(null);
 
 
@@ -30,7 +30,7 @@ const AddProduct = () => {
         formData.append('fuelTypes', fuelTypes);
         formData.append('deliveryTime', deliveryTime);
         formData.append('image', image);
-        formData.append('about', about);
+        formData.append('description', description);
 
         fetch('http://localhost:8080/cars', {
             method: 'POST',
@@ -179,7 +179,7 @@ const AddProduct = () => {
                         About
                     </label>
                     <div className="my-2">
-                        <textarea onChange={e => setAbout(e.target.value)}
+                        <textarea onChange={e => setDescription(e.target.value)}
                             id="about"
                             name="about"
                             rows={5}
