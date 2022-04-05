@@ -1,19 +1,48 @@
 import React, { useState } from 'react';
+import { showNotification } from "@mantine/notifications";
 
 const AddProduct = () => {
-    const [product, setProduct] = useState([]);
+    const [name, setName] = useState('');
+    const [price, setPrice] = useState('');
+    const [fuelTypes, setFuelTypes] = useState('');
+    const [deliveryTime, setDeliveryTime] = useState('');
+    const [about, setAbout] = useState('');
+    const [image, setImage] = useState(null);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setProduct({ ...product, [name]: value });
-        console.log(product);
+
+    const notification = (title, message, color) => {
+        showNotification({
+            title: title,
+            message: message,
+            autoClose: 4000,
+            color: color,
+
+        });
     }
+
 
     const handleClick = (e) => {
         e.preventDefault();
-        console.log(product);
+
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('price', price);
+        formData.append('fuelTypes', fuelTypes);
+        formData.append('deliveryTime', deliveryTime);
+        formData.append('image', image);
+        formData.append('about', about);
+
+        fetch('http://localhost:8080/cars', {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(data => {
+                window.location.reload(false);
+                notification("Success", "Product added successfully", "green");
+            })
     }
-    
+
     return (
         <div>
             <div className="px-4 sm:px-6">
@@ -25,9 +54,9 @@ const AddProduct = () => {
                         Product Name
                     </label>
                     <input
-                        onChange={handleChange}
+                        onChange={e => setName(e.target.value)}
                         type="text"
-                        name="first-name"
+                        name="name"
                         id="first-name"
                         autoComplete="given-name"
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
@@ -45,7 +74,7 @@ const AddProduct = () => {
                                 <span className="text-gray-500 sm:text-sm">$</span>
                             </div>
                             <input
-                                onChange={handleChange}
+                                onChange={e => setPrice(e.target.value)}
                                 type="text"
                                 name="price"
                                 id="price"
@@ -57,7 +86,6 @@ const AddProduct = () => {
                                     Currency
                                 </label>
                                 <select
-                                    onChange={handleChange}
                                     id="currency"
                                     name="currency"
                                     className="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md"
@@ -78,10 +106,11 @@ const AddProduct = () => {
                         <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
                             Fuel Types
                         </label>
-                        <select onChange={handleChange}
-                            name="fuel-types"
+                        <select onChange={e => setFuelTypes(e.target.value)}
+                            name="fuelTypes"
                             className="focus:ring-indigo-500 focus:border-indigo-500 mt-2 h-8 py-0 pl-2 pr-7 border-gray-300 bg-transparent text-gray-500 sm:text-sm rounded-md"
                         >
+                            <option disabled selected value> -- select an option -- </option>
                             <option>Petrol</option>
                             <option>Electric</option>
                             <option>Petrol/Electric</option>
@@ -92,10 +121,11 @@ const AddProduct = () => {
                         <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
                             Approximate Delivery Time
                         </label>
-                        <select onChange={handleChange}
-                            name="delivery-time"
+                        <select onChange={e => setDeliveryTime(e.target.value)}
+                            name="deliveryTime"
                             className="focus:ring-indigo-500 focus:border-indigo-500 mt-2 h-8 py-0 pl-2 pr-7 border-gray-300 bg-transparent text-gray-500 sm:text-sm rounded-md"
                         >
+                            <option disabled selected value> -- select an option -- </option>
                             <option>Within a month</option>
                             <option>Within two months</option>
                             <option>Within three months</option>
@@ -127,38 +157,41 @@ const AddProduct = () => {
                             <div className="flex text-sm text-gray-600">
                                 <label
                                     htmlFor="file-upload"
-                                    className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+                                    className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 "
                                 >
-                                    <span>Upload a file</span>
-                                    <input id="file-upload" name="file-upload" type="file" className="sr-only" />
+
+                                    <input onChange={e => setImage(e.target.files[0])} id="image" name="image" type="file" accept=".jpeg,.jpg,.png">
+
+                                    </input>
                                 </label>
-                                <p className="pl-1">or drag and drop</p>
+
+
                             </div>
-                            <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+
                         </div>
                     </div>
                 </div>
 
 
 
-            <div className='col-span-6 sm:col-span-3 py-2'>
-                <label htmlFor="about" className="my-2 block text-sm font-medium text-gray-700">
-                    About
-                </label>
-                <div className="my-2">
-                    <textarea onChange={handleChange}
-                        id="about"
-                        name="about"
-                        rows={5}
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                        defaultValue={''}
-                    />
+                <div className='col-span-6 sm:col-span-3 py-2'>
+                    <label htmlFor="about" className="my-2 block text-sm font-medium text-gray-700">
+                        About
+                    </label>
+                    <div className="my-2">
+                        <textarea onChange={e => setAbout(e.target.value)}
+                            id="about"
+                            name="about"
+                            rows={5}
+                            className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                            defaultValue={''}
+                        />
+                    </div>
                 </div>
+                <button onClick={handleClick} class="p-2 text-sm text-white bg-gray-900 hover:bg-gray-700 rounded-full">
+                    Add Product
+                </button>
             </div>
-            <button onClick={handleClick} class="p-2 text-sm text-white bg-gray-900 hover:bg-gray-700 rounded-full">
-                Add Product
-            </button>
-        </div>
 
         </div >
     );
