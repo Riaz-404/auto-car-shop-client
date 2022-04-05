@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const AddProduct = () => {
+    const [product, setProduct] = useState([]);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setProduct({ ...product, [name]: value });
+        console.log(product);
+    }
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        console.log(product);
+    }
+    
     return (
         <div>
             <div className="px-4 sm:px-6">
@@ -12,6 +25,7 @@ const AddProduct = () => {
                         Product Name
                     </label>
                     <input
+                        onChange={handleChange}
                         type="text"
                         name="first-name"
                         id="first-name"
@@ -31,6 +45,7 @@ const AddProduct = () => {
                                 <span className="text-gray-500 sm:text-sm">$</span>
                             </div>
                             <input
+                                onChange={handleChange}
                                 type="text"
                                 name="price"
                                 id="price"
@@ -42,6 +57,7 @@ const AddProduct = () => {
                                     Currency
                                 </label>
                                 <select
+                                    onChange={handleChange}
                                     id="currency"
                                     name="currency"
                                     className="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md"
@@ -62,7 +78,7 @@ const AddProduct = () => {
                         <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
                             Fuel Types
                         </label>
-                        <select
+                        <select onChange={handleChange}
                             name="fuel-types"
                             className="focus:ring-indigo-500 focus:border-indigo-500 mt-2 h-8 py-0 pl-2 pr-7 border-gray-300 bg-transparent text-gray-500 sm:text-sm rounded-md"
                         >
@@ -76,7 +92,7 @@ const AddProduct = () => {
                         <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
                             Approximate Delivery Time
                         </label>
-                        <select
+                        <select onChange={handleChange}
                             name="delivery-time"
                             className="focus:ring-indigo-500 focus:border-indigo-500 mt-2 h-8 py-0 pl-2 pr-7 border-gray-300 bg-transparent text-gray-500 sm:text-sm rounded-md"
                         >
@@ -130,7 +146,7 @@ const AddProduct = () => {
                     About
                 </label>
                 <div className="my-2">
-                    <textarea
+                    <textarea onChange={handleChange}
                         id="about"
                         name="about"
                         rows={5}
@@ -139,7 +155,7 @@ const AddProduct = () => {
                     />
                 </div>
             </div>
-            <button class="p-2 text-sm text-white bg-gray-900 hover:bg-gray-700 rounded-full">
+            <button onClick={handleClick} class="p-2 text-sm text-white bg-gray-900 hover:bg-gray-700 rounded-full">
                 Add Product
             </button>
         </div>

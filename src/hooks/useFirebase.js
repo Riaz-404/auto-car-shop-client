@@ -137,6 +137,7 @@ const useFirebase = () => {
     const logout = () => {
         signOut(auth).then(() => {
             // Sign-out successful.
+            localStorage.removeItem('loggedInUser');
             navigate("/")
             notification("Success", "You are now signed out", "#1f2937");
         }).catch((error) => {
@@ -151,6 +152,7 @@ const useFirebase = () => {
             if (user) {
                 setUser(user);
                 console.log(user);
+                localStorage.setItem('loggedInUser', user.email);
             } else {
                 setUser({});
             }
