@@ -1,10 +1,12 @@
 import { Loader } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import useAuth from '../../../../hooks/useAuth';
 
 
 const SignUpForm = () => {
+    const location = useLocation();
     const { user, isLoading, signUpWithEmail } = useAuth();
     const [formData, setFormData] = useState({});
     const handleChange = (e) => {
@@ -16,7 +18,7 @@ const SignUpForm = () => {
         e.preventDefault();
         console.log(formData);
         if (formData.password === formData.confirmPassword) {
-            signUpWithEmail(formData.email, formData.password, formData.name);
+            signUpWithEmail(formData.email, formData.password, formData.name, location);
             console.log(user);
         }
         else {

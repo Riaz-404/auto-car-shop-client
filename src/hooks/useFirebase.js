@@ -32,11 +32,12 @@ const useFirebase = () => {
     //Google Authentication
     const googleProvider = new GoogleAuthProvider();
 
-    const signInWithGoogle = () => {
+    const signInWithGoogle = (location) => {
         signInWithPopup(auth, googleProvider)
             .then((result) => {
                 notification("Success", "You are now signed in with Google", "green");
-
+                const destination = location?.state?.from || "/";
+                navigate(destination, { replace: true });
             }).catch((error) => {
                 // const errorCode = error.code;
                 const errorMessage = error.message;
@@ -47,7 +48,7 @@ const useFirebase = () => {
     }
 
     //sign-up with email and password
-    const signUpWithEmail = (email, password, name) => {
+    const signUpWithEmail = (email, password, name, location) => {
         setLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
@@ -55,6 +56,8 @@ const useFirebase = () => {
                     displayName: name
                 })
                 notification("Success", "Created your account successfully", "green");
+                const destination = location?.state?.from || "/";
+                navigate(destination, { replace: true });
             })
             .catch((error) => {
 
@@ -109,10 +112,12 @@ const useFirebase = () => {
 
     //facebook authentication
     const facebookProvider = new FacebookAuthProvider();
-    const signInWithFacebook = () => {
+    const signInWithFacebook = (location) => {
         signInWithPopup(auth, facebookProvider)
             .then((result) => {
                 notification("Success", "You are now signed in with Facebook", "green");
+                const destination = location?.state?.from || "/";
+                navigate(destination, { replace: true });
             })
             .catch((error) => {
                 // Handle Errors here.

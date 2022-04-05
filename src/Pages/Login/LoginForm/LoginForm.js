@@ -22,7 +22,7 @@ const LoginForm = () => {
     const handleGoogleSignIn = () => {
         console.log("clicked")
         
-        signInWithGoogle();
+        signInWithGoogle(location);
     }
     return (
         <>
@@ -115,7 +115,7 @@ const LoginForm = () => {
                                 
                             <img className='h-5' src={googleSvg} alt="googleLogo"/>
                             </button>
-                        <button onClick={() => {signInWithFacebook()}}
+                        <button onClick={() => {signInWithFacebook(location)}}
                                 type="submit"
                                 className="group relative w-full flex justify-center py-2 px-4 border border-solid border-indigo-600 text-sm font-medium rounded-md  hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             >
