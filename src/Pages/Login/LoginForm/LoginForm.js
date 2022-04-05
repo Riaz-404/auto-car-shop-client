@@ -5,8 +5,10 @@ import facebookSvg from '../../../Images/FacebookLogo.svg';
 import githubSvg from '../../../Images/githubLogo.svg';
 import useAuth from '../../../hooks/useAuth';
 import { Loader } from '@mantine/core';
+import { useLocation } from 'react-router-dom';
 
 const LoginForm = () => {
+    const location = useLocation();
     const {user, isLoading, signInWithGoogle, loginWithEmail, signInWithFacebook } = useAuth();
     const [formData, setFormData] = useState({});
     const handleChange = (e) => {
@@ -15,14 +17,12 @@ const LoginForm = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        loginWithEmail(formData.email, formData.password);
-        console.log(user);
+        loginWithEmail(formData.email, formData.password, location);
     }
     const handleGoogleSignIn = () => {
         console.log("clicked")
         
         signInWithGoogle();
-        console.log(user);
     }
     return (
         <>

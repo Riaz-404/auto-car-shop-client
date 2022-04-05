@@ -1,6 +1,7 @@
 import { showNotification } from "@mantine/notifications";
 import { GoogleAuthProvider, getAuth, signInWithPopup, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, FacebookAuthProvider, sendPasswordResetEmail } from "firebase/auth";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 import initializeFirebase from "../Pages/Login/Firebase/firebase.init";
@@ -10,6 +11,8 @@ initializeFirebase();
 const useFirebase = () => {
     const [user, setUser] = useState({});
     const [isLoading, setLoading] = useState();
+
+    const navigate = useNavigate();
 
     const auth = getAuth();
 
@@ -66,11 +69,13 @@ const useFirebase = () => {
     }
 
     //login with email and password
-    const loginWithEmail = (email, password) => {
+    const loginWithEmail = (email, password, location) => {
         setLoading(true);
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 notification("Success", "Successfully logged in", "green");
+                const destination = location?.state?.from || "/";
+                navigate(destination, { replace: true });
             })
             .catch((error) => {
                 // const errorCode = error.code;
@@ -127,6 +132,7 @@ const useFirebase = () => {
     const logout = () => {
         signOut(auth).then(() => {
             // Sign-out successful.
+            navigate("/")
             notification("Success", "You are now signed out", "#1f2937");
         }).catch((error) => {
             // An error happened.

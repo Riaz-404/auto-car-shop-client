@@ -8,6 +8,7 @@ import Home from './Pages/Home/Home/Home';
 import ForgetPass from './Pages/Login/ForgetPass/ForgetPass';
 import Login from './Pages/Login/Login/Login';
 import SignUp from './Pages/Login/SignUp/SignUp/SignUp';
+import PrivateRoute from './Pages/PrivateRoute/PrivateRoute';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         <Route path="/forgetpass" element={<ForgetPass />} />
         <Route path="/cars" element={<Cars />}/>
         <Route path="/cars/:id" element={<CarDetails />} />
-        <Route path="/dashboard/*" element={<Dashboard />} >
+        <Route path="/dashboard/*" element={<PrivateRoute><Dashboard /></PrivateRoute>} >
           
         </Route>
       </Routes>

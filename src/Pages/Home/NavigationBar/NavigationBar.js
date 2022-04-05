@@ -56,11 +56,7 @@ const NavigationBar = () => {
                                     
                                     <Link to='/' className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>Home</Link>
                                     <Link to='/cars' className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>Cars</Link>
-                                    {
-                                        user?.email ? 
-                                        <Link to='/dashboard' className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>Dashboard</Link>
-                                        : <></>
-                                    }
+                                    <Link to='/dashboard' className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>Dashboard</Link>
                                     
                                 </div>
                             </div>
