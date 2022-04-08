@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 import useAuth from '../../../hooks/useAuth';
 
 const Profile = () => {
+    const [loggedInUser, setLoggedInUser] = useState({});
     const {user} = useAuth();
-    console.log(user)
+    const email = user.email;
+
+    useEffect(() => {
+        fetch(`http://localhost:8080/users/${email}`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setLoggedInUser(data[0]);
+            })
+    }, [email])
+    
     return (
         <div>
             <div>
@@ -16,23 +27,29 @@ const Profile = () => {
                 <dl>
                     <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt className="text-sm font-medium text-gray-500">Full name</dt>
-                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{user.displayName}</dd>
+                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{loggedInUser.displayName}</dd>
                     </div>
                     <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt className="text-sm font-medium text-gray-500">Role</dt>
-                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{user.role}</dd>
-                    </div>
-                    <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt className="text-sm font-medium text-gray-500">Email address</dt>
-                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{user.email}</dd>
+                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{loggedInUser.email}</dd>
                     </div>
+                    {
+                        loggedInUser.role === 'Admin' ?
+                            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt className="text-sm font-medium text-gray-500">Role</dt>
+                                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{loggedInUser.role}</dd>
+                            </div>
+                            :
+                            <></>
+                    }
                     
-                    
+
+
                 </dl>
             </div>
         </div>
 
-        
+
     );
 };
 

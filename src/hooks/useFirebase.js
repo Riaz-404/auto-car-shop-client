@@ -11,6 +11,7 @@ initializeFirebase();
 const useFirebase = () => {
     const [user, setUser] = useState({});
     const [isLoading, setLoading] = useState();
+    const [admin, setAdmin] = useState({});
 
     const navigate = useNavigate();
 
@@ -35,6 +36,8 @@ const useFirebase = () => {
     const signInWithGoogle = (location) => {
         signInWithPopup(auth, googleProvider)
             .then((result) => {
+                const user = result.user;
+                saveUser(user.email, user.displayName, 'POST')
                 notification("Success", "You are now signed in with Google", "green");
                 const destination = location?.state?.from || "/";
                 navigate(destination, { replace: true });
@@ -52,6 +55,7 @@ const useFirebase = () => {
         setLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
+                saveUser(email, name, 'POST');
                 updateProfile(auth.currentUser, {
                     displayName: name
                 })
@@ -68,7 +72,6 @@ const useFirebase = () => {
             .finally(() => {
                 setLoading(false)
             });
-
     }
 
     //login with email and password
@@ -100,14 +103,14 @@ const useFirebase = () => {
                 notification("Notification", "Password reset email sent to your email", "green");
             })
             .catch((error) => {
-                
+
                 const errorMessage = error.message;
                 // ..
                 notification("Error", errorMessage, "red");
             })
             .finally(() => {
                 setLoading(false)
-                });
+            });
     }
 
     //facebook authentication
@@ -138,6 +141,7 @@ const useFirebase = () => {
         signOut(auth).then(() => {
             // Sign-out successful.
             localStorage.removeItem('loggedInUser');
+            localStorage.removeItem('loggedInUserRole');
             navigate("/")
             notification("Success", "You are now signed out", "#1f2937");
         }).catch((error) => {
@@ -160,9 +164,34 @@ const useFirebase = () => {
         return () => unsubscibed;
     }, [auth])
 
+    //saving user to database
+    const saveUser = (email, displayName, method) => {
+        const user = { email, displayName };
+        fetch('http://localhost:8080/users', {
+            method: method,
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then()
+    }
+
+    // setting user role to localStorage
+    useEffect(() => {
+        fetch(`http://localhost:8080/users/admin/${user.email}`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setAdmin(data);
+            })
+    }, [user.email])
+
+
     return {
         user,
         isLoading,
+        admin,
         signInWithGoogle,
         signUpWithEmail,
         loginWithEmail,

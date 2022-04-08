@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 
 const Sidebar = () => {
-    const { user } = useAuth();
-    console.log(user);
+    const {admin} = useAuth();
+    console.log(admin);
+
     return (
         <div className='w-64 h-screen border-r-2'>
             <li className='py-2 list-none'>
@@ -22,7 +23,7 @@ const Sidebar = () => {
                 </Link>
             </li>
             {
-                user?.email ?
+                admin.Admin ?
                     <>
                         <hr />
                         <li className='py-2 list-none'>
