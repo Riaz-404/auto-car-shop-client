@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { showNotification } from "@mantine/notifications";
 import {
     ShoppingCartIcon
 } from '@heroicons/react/solid'
@@ -6,6 +7,8 @@ import { StarIcon } from '@heroicons/react/solid'
 import { RadioGroup } from '@headlessui/react'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import useAuth from '../../../../hooks/useAuth';
+import DetailsReview from './DetailsReview';
 
 
 
@@ -21,9 +24,23 @@ function classNames(...classes) {
 }
 
 const Details = ({ id }) => {
+    const notification = (title, message, color) => {
+        showNotification({
+            title: title,
+            message: message,
+            autoClose: 4000,
+            color: color,
+
+        });
+    }
+
+
+    const { user } = useAuth();
     const [car, setCar] = useState([]);
     const [selectedColor, setSelectedColor] = useState(colors[0])
     const [startDate, setStartDate] = useState(new Date());
+    const [reviews, setReviews] = useState([]);
+
 
     useEffect(() => {
         fetch(`http://localhost:8080/cars/${id}`)
@@ -32,6 +49,44 @@ const Details = ({ id }) => {
                 setCar(data);
             })
     }, [id]);
+
+    useEffect(() => {
+        fetch(`http://localhost:8080/review/q?carId=${id}`)
+            .then(res => res.json())
+            .then(data => {
+                setReviews(data);
+            })
+    }, [id]);
+
+    console.log(reviews)
+
+
+    const handleAddToCart = (e) => {
+        e.preventDefault();
+
+        const email = user.email;
+        const name = car.name;
+        const color = selectedColor.name;
+        const price = car.price;
+        const deliveryDate = `${startDate.getDate()}/${startDate.getMonth() + 1}/${startDate.getFullYear()}`;
+        const status = 'Pending';
+        fetch('http://localhost:8080/cart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, id, name, color, price, deliveryDate, status })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    notification("Success", "Order placed successfully", "green");
+                }
+                else {
+                    notification("Error", "Order failed", "red");
+                }
+            })
+    }
 
     return (
         <div className="bg-white">
@@ -140,7 +195,7 @@ const Details = ({ id }) => {
 
                             </div>
 
-                            <button
+                            <button onClick={handleAddToCart}
                                 type="submit"
                                 className="mt-10 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             >
@@ -160,6 +215,22 @@ const Details = ({ id }) => {
                         <div className="space-y-6 pt-4">
                             <p className="text-base text-gray-900">{car.description}</p>
                         </div>
+                    </div>
+
+
+                </div>
+                <div className="max-w-2xl mx-auto pt-10 pb-6 px-4 sm:px-6 lg:max-w-7xl lg:pt-6 lg:pb-6 lg:px-8">
+                    {/* Description and details */}
+                    <div>
+                        <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">Reviews And Ratings</h1>
+                        <div className="flow-root pt-5">
+                            <ul role="list" className="-my-6 divide-y divide-gray-200">
+                                {
+                                    reviews.map((review) => <DetailsReview review={review}></DetailsReview>)
+                                }
+                            </ul>
+                        </div>
+
                     </div>
 
 

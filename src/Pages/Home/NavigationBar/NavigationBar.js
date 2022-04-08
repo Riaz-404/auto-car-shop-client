@@ -10,7 +10,7 @@ import defaultAvater from '../../../Images/profile-picture.png'
 const navigation = [
     { name: 'Home', href: '/', current: true },
     { name: 'Cars', href: '/cars', current: false },
-    { name: 'Dashboard', href: '/cars', current: false },
+    { name: 'Dashboard', href: '/dashboard', current: false },
 ]
 
 function classNames(...classes) {

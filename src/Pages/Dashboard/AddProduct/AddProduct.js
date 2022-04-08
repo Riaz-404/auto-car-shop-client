@@ -20,7 +20,6 @@ const AddProduct = () => {
         });
     }
 
-
     const handleClick = (e) => {
         e.preventDefault();
 

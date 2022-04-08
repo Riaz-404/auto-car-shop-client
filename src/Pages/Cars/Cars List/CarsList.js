@@ -1,3 +1,4 @@
+import { showNotification } from "@mantine/notifications";
 import React from 'react';
 import {
     CalendarIcon,
@@ -7,11 +8,56 @@ import {
 import ReactStars from 'react-rating-stars-component';
 import fuelicon from "../../../Images/fuel-icon.ico"
 import { Link } from 'react-router-dom';
-
+import useAuth from '../../../hooks/useAuth';
 
 
 const CarsList = ({ car }) => {
+    const notification = (title, message, color) => {
+        showNotification({
+            title: title,
+            message: message,
+            autoClose: 4000,
+            color: color,
+
+        });
+    }
+
+
+    const {user} = useAuth();
     const { _id, name, price, image, deliveryTime, fuelTypes } = car;
+
+    const handleAddToCart = (e) => {
+        e.preventDefault();
+        
+        const email = user.email;
+        const id = _id;
+        const color = 'White';
+        const startDate = new Date();
+        let addedMonth;
+        if(deliveryTime === 'Within a month') addedMonth = 1;
+        else if(deliveryTime === 'Within two months') addedMonth = 2;
+        else addedMonth = 3;
+        const deliveryDate = `${startDate.getDate()}/${startDate.getMonth()+1+addedMonth}/${startDate.getFullYear()}`;
+        const status = 'Pending';
+        fetch('http://localhost:8080/cart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({email, id, name, color, price, deliveryDate, status})
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if(data.insertedId){
+                        notification("Success", "Order placed successfully", "green");
+                    }
+                    else{
+                        notification("Error", "Order failed", "red");
+                    }
+                })
+        
+
+    }
     return (
         <div className='grid p-5 md:grid-cols-7 gap-4 sm: grid-cols-1'>
             <div className='col-span-2 relative w-full md:h-60 sm:h-50 bg-white rounded-lg overflow-hidden group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1'>
@@ -54,7 +100,7 @@ const CarsList = ({ car }) => {
                 <div className="mt-5 flex lg:mt-0 lg:ml-4">
 
                     <span className="sm:ml-3">
-                        <button
+                        <button onClick={handleAddToCart}
                             type="button"
                             className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
