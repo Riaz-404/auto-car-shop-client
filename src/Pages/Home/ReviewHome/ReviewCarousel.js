@@ -11,7 +11,7 @@ const ReviewCarousel = ({ review }) => {
                 <img
                     className="h-16 w-16 rounded-full"
                     src={review.userPhotoUrl || defaultAvater}
-                    alt=""
+                    alt="Avater"
                 />
             </div>
             <h2 className='text-center text-2xl font-bold pt-2'>{review.name}</h2>

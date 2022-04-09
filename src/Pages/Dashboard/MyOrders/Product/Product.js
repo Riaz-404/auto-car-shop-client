@@ -1,15 +1,65 @@
 import React, { useEffect, useState } from 'react';
+import { showNotification } from "@mantine/notifications";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
-const Product = ({product }) => {
+const Product = ({ product }) => {
     const [car, setCar] = useState([]);
+
+    const notification = (title, message, color) => {
+        showNotification({
+            title: title,
+            message: message,
+            autoClose: 4000,
+            color: color,
+
+        });
+    }
 
     useEffect(() => {
         fetch(`http://localhost:8080/cars/${product.carId}`)
             .then(res => res.json())
-            .then(data => {                
+            .then(data => {
                 setCar(data);
             })
     }, [product.carId]);
+
+
+    const handleRemoveButton = (e) => {
+        e.preventDefault();
+
+        fetch(`http://localhost:8080/cart/remove/${product._id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                notification("Success", "Product removed from cart", "green");
+                window.location.reload();
+
+            })
+    }
+
+
+    const submit = (e) => {
+        confirmAlert({                       
+            message: `Are you sure want to remove ${product.carName} from your order?`,
+            buttons: [
+                {
+                  label: 'Confirm',
+                  onClick: () => handleRemoveButton(e)
+                },
+                {
+                  label: 'Cancel',
+                  onClick: () => {}
+                }
+              ] ,     // Action after Cancel
+            overlayClassName: "overlay-custom-class-name"      // Custom overlay class name
+          })
+        
+      };
 
 
     return (
@@ -37,12 +87,13 @@ const Product = ({product }) => {
                     <p className="text-gray-500">Status: <span className='font-bold'>{product.status}</span></p>
 
                     <div className="flex">
-                        <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500">
+                        <button onClick={submit} type="button" className="font-medium text-indigo-600 hover:text-indigo-500">
                             Remove
                         </button>
                     </div>
                 </div>
             </div>
+            
         </li>
     );
 };
