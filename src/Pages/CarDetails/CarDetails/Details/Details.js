@@ -18,7 +18,7 @@ const colors = [
     { name: 'Gray', className: 'bg-gray-200', selectedClass: 'ring-gray-400' },
     { name: 'Black', className: 'bg-gray-900', selectedClass: 'ring-gray-900' },
 ]
-const reviews = { href: '#', average: 4, totalCount: 117 }
+
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -234,7 +234,7 @@ const Details = ({ id }) => {
                     <div>
                         <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">Reviews And Ratings</h1>
                         <div className="flow-root pt-5">
-                            <ul role="list" className="-my-6 divide-y divide-gray-200">
+                            <ul className="-my-6 divide-y divide-gray-200">
                                 {
                                     reviews.map((review) => <DetailsReview key={review._id} review={review}></DetailsReview>)
                                 }

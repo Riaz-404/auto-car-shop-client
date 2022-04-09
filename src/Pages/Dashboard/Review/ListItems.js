@@ -1,6 +1,6 @@
 import { Listbox } from '@headlessui/react';
 import { CheckIcon } from '@heroicons/react/outline';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 const ListItems = ({product, classNames }) => {
     return (

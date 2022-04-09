@@ -11,7 +11,6 @@ function classNames(...classes) {
 const PurchasedProductList = ({selected, setSelected}) => {
     const { user } = useAuth();
     const [products, setProducts] = useState([]);
-    const [images, setImages] = useState([]);
 
     useEffect(() => {
         const status = "delivered";

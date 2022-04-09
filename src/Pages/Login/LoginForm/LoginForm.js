@@ -9,7 +9,7 @@ import { useLocation } from 'react-router-dom';
 
 const LoginForm = () => {
     const location = useLocation();
-    const {user, isLoading, signInWithGoogle, loginWithEmail, signInWithFacebook } = useAuth();
+    const { isLoading, signInWithGoogle, loginWithEmail, signInWithFacebook } = useAuth();
     const [formData, setFormData] = useState({});
     const handleChange = (e) => {
         const { name, value } = e.target;

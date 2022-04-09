@@ -24,7 +24,6 @@ import ManageProductList from './ManageProductList';
 
 export default function ManageProduct() {
     const [cars, setCars] = useState([]);
-    const [opened, setOpened] = useState(false);
 
     useEffect(() => {
         fetch('https://auto-car-shop.herokuapp.com/cars')

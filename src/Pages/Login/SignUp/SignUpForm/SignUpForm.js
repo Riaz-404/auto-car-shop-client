@@ -7,7 +7,7 @@ import useAuth from '../../../../hooks/useAuth';
 
 const SignUpForm = () => {
     const location = useLocation();
-    const { user, isLoading, signUpWithEmail } = useAuth();
+    const { isLoading, signUpWithEmail } = useAuth();
     const [formData, setFormData] = useState({});
     const handleChange = (e) => {
         const { name, value } = e.target;
