@@ -7,7 +7,7 @@ import {
 } from '@heroicons/react/solid'
 import ReactStars from 'react-rating-stars-component';
 import fuelicon from "../../../Images/fuel-icon.ico"
-import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 
 
@@ -76,7 +76,7 @@ const CarsList = ({ car }) => {
             <div className="col-span-5 lg:flex lg:items-center lg:justify-between ">
                 <div className="flex-1 min-w-0">
                     <Link to={`/cars/${_id}`}>
-                        <h2 className="text-2xl sm:text-4xl font-bold leading-7 text-gray-900 sm:text-4xl sm:truncate">{name}</h2>
+                        <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:text-4xl sm:truncate">{name}</h2>
                     </Link>
                     <div>
 
