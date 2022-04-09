@@ -59,7 +59,7 @@ const Product = ({ product }) => {
             overlayClassName: "overlay-custom-class-name"      // Custom overlay class name
           })
         
-      };
+    };
 
 
     return (

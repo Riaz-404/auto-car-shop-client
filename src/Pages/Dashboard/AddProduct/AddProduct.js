@@ -56,8 +56,6 @@ const AddProduct = () => {
                         onChange={e => setName(e.target.value)}
                         type="text"
                         name="name"
-                        id="first-name"
-                        autoComplete="given-name"
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                     />
                 </div>
@@ -175,19 +173,19 @@ const AddProduct = () => {
 
                 <div className='col-span-6 sm:col-span-3 py-2'>
                     <label htmlFor="about" className="my-2 block text-sm font-medium text-gray-700">
-                        About
+                    Description
                     </label>
                     <div className="my-2">
                         <textarea onChange={e => setDescription(e.target.value)}
-                            id="about"
-                            name="about"
+                            id="Description"
+                            name="Description"
                             rows={5}
                             className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
                             defaultValue={''}
                         />
                     </div>
                 </div>
-                <button onClick={handleClick} class="p-2 text-sm text-white bg-gray-900 hover:bg-gray-700 rounded-full">
+                <button onClick={handleClick} class="py-2 px-3  text-sm text-white bg-gray-900 hover:bg-gray-700 rounded-full">
                     Add Product
                 </button>
             </div>
