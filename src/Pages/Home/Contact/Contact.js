@@ -23,7 +23,7 @@ const Contact = () => {
         <div className="m-9 p-5">
             <p style={{ fontSize: '40px', fontWeight: 'bold' }} className="my-9">CONTACT WITH US</p>
             <div className='grid md:grid-cols-2 sm:grid-cols-1'>
-                <div>
+                <div className='hidden md:block'>
                     <img style={{ height: '350px' }} src={contactImg} alt="" srcset="" />
                 </div>
                 

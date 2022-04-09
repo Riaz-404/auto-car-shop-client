@@ -51,13 +51,13 @@ const SignUpForm = () => {
                         <div className="rounded-md shadow-sm">
                             <input onChange={handleChange}
                                 type="text"
-                                class="block border border-grey-light w-full p-3 rounded mb-4"
+                                class="block border border-grey-light w-full p-3 rounded mb-2"
                                 name="email"
                                 placeholder="Email" />
 
                             <input onChange={handleChange}
                                 type="text"
-                                class="block border border-grey-light w-full p-3 rounded mb-4"
+                                class="block border border-grey-light w-full p-3 rounded mb-2"
                                 name="name"
                                 placeholder="Full Name" />
 
@@ -65,12 +65,12 @@ const SignUpForm = () => {
 
                             <input onChange={handleChange}
                                 type="password"
-                                class="block border border-grey-light w-full p-3 rounded mb-4"
+                                class="block border border-grey-light w-full p-3 rounded mb-2"
                                 name="password"
                                 placeholder="Password" />
                             <input onChange={handleChange}
                                 type="password"
-                                class="block border border-grey-light w-full p-3 rounded mb-4"
+                                class="block border border-grey-light w-full p-3 rounded mb-2"
                                 name="confirmPassword"
                                 placeholder="Confirm Password" />
 
