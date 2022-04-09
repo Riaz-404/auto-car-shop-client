@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactStars from 'react-rating-stars-component';
-import defaultAvater from '../../../../Images/profile-picture.png';
+import defaultAvater from '../../../../Images/profile_pic.svg';
 
 const DetailsReview = ({review}) => {
     
@@ -8,7 +8,7 @@ const DetailsReview = ({review}) => {
         <li className="flex py-6">
             <div className="h-20 w-20 flex-shrink-0 overflow-hidden rounded-full border border-gray-200">
                 <img
-                    src={review.userPhotoUrl === "null" ? defaultAvater : review.userPhotoUrl}
+                    src={review.userPhotoUrl || defaultAvater}
                     alt={review.carName}
                     className="h-full w-full object-cover object-center"
                 />

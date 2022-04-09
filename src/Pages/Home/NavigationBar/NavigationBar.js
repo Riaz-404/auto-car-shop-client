@@ -5,7 +5,7 @@ import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import logo from "../../../Images/logo.png";
 import { Link } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
-import defaultAvater from '../../../Images/profile-picture.png'
+import defaultAvater from '../../../Images/profile_pic.svg'
 
 const navigation = [
     { name: 'Home', href: '/', current: true },
