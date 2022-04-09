@@ -39,7 +39,7 @@ const Review = () => {
         formData.append('reviewStar', star);
         formData.append('review', review);
 
-        fetch('http://localhost:8080/review', {
+        fetch('https://auto-car-shop.herokuapp.com/review', {
             method: 'POST',
             body: formData
         })

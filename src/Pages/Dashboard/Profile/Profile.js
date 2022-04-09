@@ -7,7 +7,7 @@ const Profile = () => {
     const email = user.email;
 
     useEffect(() => {
-        fetch(`http://localhost:8080/users/${email}`)
+        fetch(`https://auto-car-shop.herokuapp.com/users/${email}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);

@@ -167,7 +167,7 @@ const useFirebase = () => {
     //saving user to database
     const saveUser = (email, displayName, method) => {
         const user = { email, displayName };
-        fetch('http://localhost:8080/users', {
+        fetch('https://auto-car-shop.herokuapp.com/users', {
             method: method,
             headers: {
                 'content-type': 'application/json'
@@ -179,7 +179,7 @@ const useFirebase = () => {
 
     // setting user role to localStorage
     useEffect(() => {
-        fetch(`http://localhost:8080/users/admin/${user.email}`)
+        fetch(`https://auto-car-shop.herokuapp.com/users/admin/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);

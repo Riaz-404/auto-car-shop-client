@@ -47,7 +47,7 @@ const Details = ({ id }) => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:8080/cars/${id}`)
+        fetch(`https://auto-car-shop.herokuapp.com/cars/${id}`)
             .then(res => res.json())
             .then(data => {
                 setCar(data);
@@ -55,7 +55,7 @@ const Details = ({ id }) => {
     }, [id]);
 
     useEffect(() => {
-        fetch(`http://localhost:8080/review/q?carId=${id}`)
+        fetch(`https://auto-car-shop.herokuapp.com/review/q?carId=${id}`)
             .then(res => res.json())
             .then(data => {
                 setReviews(data);
@@ -75,7 +75,7 @@ const Details = ({ id }) => {
             const price = car.price;
             const deliveryDate = `${startDate.getDate()}/${startDate.getMonth() + 1}/${startDate.getFullYear()}`;
             const status = 'Pending';
-            fetch('http://localhost:8080/cart', {
+            fetch('https://auto-car-shop.herokuapp.com/cart', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -10,7 +10,7 @@ const MyOrders = () => {
     let totalCost = 0;
 
     useEffect(() => {
-        fetch(`http://localhost:8080/cart/product/${user.email}`)
+        fetch(`https://auto-car-shop.herokuapp.com/cart/product/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setProducts(data);

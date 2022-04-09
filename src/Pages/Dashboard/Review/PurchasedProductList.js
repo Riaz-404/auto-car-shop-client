@@ -15,7 +15,7 @@ const PurchasedProductList = ({selected, setSelected}) => {
 
     useEffect(() => {
         const status = "delivered";
-        fetch(`http://localhost:8080/cart/q?email=${user.email}&status=${status}`)
+        fetch(`https://auto-car-shop.herokuapp.com/cart/q?email=${user.email}&status=${status}`)
             .then(res => res.json())
             .then(data => {
                 setProducts(data);

@@ -17,7 +17,7 @@ const Product = ({ product }) => {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:8080/cars/${product.carId}`)
+        fetch(`https://auto-car-shop.herokuapp.com/cars/${product.carId}`)
             .then(res => res.json())
             .then(data => {
                 setCar(data);
@@ -28,7 +28,7 @@ const Product = ({ product }) => {
     const handleRemoveButton = (e) => {
         e.preventDefault();
 
-        fetch(`http://localhost:8080/cart/remove/${product._id}`, {
+        fetch(`https://auto-car-shop.herokuapp.com/cart/remove/${product._id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'

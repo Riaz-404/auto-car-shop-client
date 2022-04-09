@@ -8,7 +8,7 @@ const ListItems = ({product, classNames }) => {
     console.log(product);
 
     // useEffect(() => {
-    //     fetch(`http://localhost:8080/cars/${product.id}`)
+    //     fetch(`https://auto-car-shop.herokuapp.com/cars/${product.id}`)
     //         .then(res => res.json())
     //         .then(data => {
     //             setCar(data);

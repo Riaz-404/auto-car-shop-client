@@ -39,7 +39,7 @@ const ManageProductList = ({ car }) => {
         formData.append('deliveryTime', deliveryTime);
         formData.append('description', description);
         formData.append('image', image);
-        fetch(`http://localhost:8080/cars/${car._id}`, {
+        fetch(`https://auto-car-shop.herokuapp.com/cars/${car._id}`, {
             method: 'PUT',
             body: formData
         })
@@ -54,7 +54,7 @@ const ManageProductList = ({ car }) => {
     const handleRemoveButton = (e) => {
         e.preventDefault();
 
-        fetch(`http://localhost:8080/cars/remove/${car._id}`, {
+        fetch(`https://auto-car-shop.herokuapp.com/cars/remove/${car._id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'

@@ -15,7 +15,7 @@ const MakeAdmin = () => {
     }
 
     const handleSubmit = () => {
-        fetch(`http://localhost:8080/users/${email}`, {
+        fetch(`https://auto-car-shop.herokuapp.com/users/${email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

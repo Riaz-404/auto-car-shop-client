@@ -27,7 +27,7 @@ export default function ManageProduct() {
     const [opened, setOpened] = useState(false);
 
     useEffect(() => {
-        fetch('http://localhost:8080/cars')
+        fetch('https://auto-car-shop.herokuapp.com/cars')
             .then(res => res.json())
             .then(data => {
                 setCars(data);

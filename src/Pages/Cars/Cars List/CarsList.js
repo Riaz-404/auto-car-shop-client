@@ -42,7 +42,7 @@ const CarsList = ({ car }) => {
             else addedMonth = 3;
             const deliveryDate = `${startDate.getDate()}/${startDate.getMonth() + 1 + addedMonth}/${startDate.getFullYear()}`;
             const status = 'Pending';
-            fetch('http://localhost:8080/cart', {
+            fetch('https://auto-car-shop.herokuapp.com/cart', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

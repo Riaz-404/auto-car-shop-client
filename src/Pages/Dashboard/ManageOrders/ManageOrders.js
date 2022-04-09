@@ -7,7 +7,7 @@ const ManageOrders = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:8080/cart')
+        fetch('https://auto-car-shop.herokuapp.com/cart')
             .then(res => res.json())    
             .then(data => {
                 setProducts(data);

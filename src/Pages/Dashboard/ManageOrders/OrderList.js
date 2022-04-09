@@ -16,7 +16,7 @@ const OrderList = ({ product }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch(`http://localhost:8080/cart/${product._id}`, {
+        fetch(`https://auto-car-shop.herokuapp.com/cart/${product._id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
