@@ -2,6 +2,7 @@ import React from 'react';
 import { Paper, Button } from '@mui/material';
 import ReactStars from 'react-rating-stars-component';
 import defaultAvater from "../../../Images/profile-picture.png"
+import { Link } from 'react-router-dom';
 
 const ReviewCarousel = ({ review }) => {
     return (
@@ -25,7 +26,7 @@ const ReviewCarousel = ({ review }) => {
             <p className='text-center'>{review.review}</p>
 
             <Button className="CheckButton">
-                Check it out!
+                <Link to={`/cars/${review.carId}`}>Check it out!</Link>
             </Button>
         </Paper>
     );
