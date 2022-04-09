@@ -70,7 +70,7 @@ const CarsList = ({ car }) => {
     return (
         <div className='grid p-5 md:grid-cols-7 gap-4 sm: grid-cols-1'>
             <div className='col-span-2 relative w-full md:h-60 sm:h-50 bg-white rounded-lg overflow-hidden group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1'>
-                <Link to={`/cars/${_id}`}><img className="object-center" src={`data:image/jpeg;base64,${image}`} alt="" srcset="" /></Link>
+                <Link to={`/cars/${_id}`}><img className="object-center" src={`data:image/jpeg;base64,${image}`} alt=""/></Link>
             </div>
 
             <div className="col-span-5 lg:flex lg:items-center lg:justify-between ">

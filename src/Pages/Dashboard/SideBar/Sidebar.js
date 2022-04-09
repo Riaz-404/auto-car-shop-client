@@ -13,7 +13,6 @@ import FactCheckIcon from '@mui/icons-material/FactCheck';
 
 const Sidebar = () => {
     const { admin } = useAuth();
-    console.log(admin);
 
     return (
         <div className='w-64 h-screen border-r-2'>

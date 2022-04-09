@@ -3,18 +3,6 @@ import { CheckIcon } from '@heroicons/react/outline';
 import React, { useEffect, useState } from 'react';
 
 const ListItems = ({product, classNames }) => {
-    const [car, setCar] = useState([]);
-
-    console.log(product);
-
-    // useEffect(() => {
-    //     fetch(`https://auto-car-shop.herokuapp.com/cars/${product.id}`)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setCar(data);
-    //         })
-    // }, [product.id]);
-    console.log(car);
     return (
         <div>
             <Listbox.Option

@@ -14,9 +14,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 
 const colors = [
-    { name: 'White', class: 'bg-white', selectedClass: 'ring-gray-400' },
-    { name: 'Gray', class: 'bg-gray-200', selectedClass: 'ring-gray-400' },
-    { name: 'Black', class: 'bg-gray-900', selectedClass: 'ring-gray-900' },
+    { name: 'White', className: 'bg-white', selectedClass: 'ring-gray-400' },
+    { name: 'Gray', className: 'bg-gray-200', selectedClass: 'ring-gray-400' },
+    { name: 'Black', className: 'bg-gray-900', selectedClass: 'ring-gray-900' },
 ]
 const reviews = { href: '#', average: 4, totalCount: 117 }
 
@@ -62,7 +62,6 @@ const Details = ({ id }) => {
             })
     }, [id]);
 
-    console.log(reviews)
 
 
     const handleAddToCart = (e) => {
@@ -180,7 +179,7 @@ const Details = ({ id }) => {
                                                 <span
                                                     aria-hidden="true"
                                                     className={classNames(
-                                                        color.class,
+                                                        color.className,
                                                         'h-8 w-8 border border-black border-opacity-10 rounded-full'
                                                     )}
                                                 />
@@ -237,7 +236,7 @@ const Details = ({ id }) => {
                         <div className="flow-root pt-5">
                             <ul role="list" className="-my-6 divide-y divide-gray-200">
                                 {
-                                    reviews.map((review) => <DetailsReview review={review}></DetailsReview>)
+                                    reviews.map((review) => <DetailsReview key={review._id} review={review}></DetailsReview>)
                                 }
                             </ul>
                         </div>

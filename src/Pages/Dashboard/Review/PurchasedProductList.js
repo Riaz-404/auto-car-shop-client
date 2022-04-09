@@ -22,10 +22,7 @@ const PurchasedProductList = ({selected, setSelected}) => {
             })
     }, [user.email]);
 
-    console.log(selected);
-
-
-    console.log(products[0]);
+    
     return (
         <Listbox value={selected} onChange={setSelected}>
             {({ open }) => (

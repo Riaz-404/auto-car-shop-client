@@ -19,7 +19,7 @@ const Cars = () => {
 
             <div className='m-10'>
                 {
-                    cars.map(car => <CarsList car={car}/>)
+                    cars.map(car => <CarsList key={car._id} car={car}/>)
                 }
             </div>
         </div>

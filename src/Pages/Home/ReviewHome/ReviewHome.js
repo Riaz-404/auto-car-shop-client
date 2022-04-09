@@ -13,7 +13,6 @@ const ReviewHome = () => {
             })
     }, []);
 
-    console.log(reviews);
 
     return (
         <div className="m-9 p-5">

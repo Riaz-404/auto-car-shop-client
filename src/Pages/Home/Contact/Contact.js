@@ -24,7 +24,7 @@ const Contact = () => {
             <p style={{ fontSize: '40px', fontWeight: 'bold' }} className="my-9">CONTACT WITH US</p>
             <div className='grid md:grid-cols-2 sm:grid-cols-1'>
                 <div className='hidden md:block'>
-                    <img style={{ height: '350px' }} src={contactImg} alt="" srcset="" />
+                    <img style={{ height: '350px' }} src={contactImg} alt="" />
                 </div>
                 
                 <form className='px-5 py-3' onSubmit={handleSubmit}>
@@ -61,7 +61,7 @@ const Contact = () => {
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
                         defaultValue={''}
                     />
-                    <button type="submit" disabled={state.submitting} class="my-2 py-2 px-3 text-sm text-white bg-gray-900 hover:bg-gray-700 rounded-md">
+                    <button type="submit" disabled={state.submitting} className="my-2 py-2 px-3 text-sm text-white bg-gray-900 hover:bg-gray-700 rounded-md">
                         SUBMIT
                     </button>
 

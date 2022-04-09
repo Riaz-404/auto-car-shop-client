@@ -10,7 +10,6 @@ const ForgetPass = () => {
     const handleChange = (e) => {
         const email = e.target.value;
         setEmail(email);
-        console.log(email);
     }
 
     const handleClick = (e) => {

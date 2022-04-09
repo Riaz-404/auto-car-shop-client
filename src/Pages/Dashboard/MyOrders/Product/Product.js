@@ -56,7 +56,7 @@ const Product = ({ product }) => {
                   onClick: () => {}
                 }
               ] ,     // Action after Cancel
-            overlayClassName: "overlay-custom-class-name"      // Custom overlay class name
+            overlayClassName: "overlay-custom-className-name"      // Custom overlay className name
           })
         
     };

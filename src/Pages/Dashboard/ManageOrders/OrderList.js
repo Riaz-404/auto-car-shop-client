@@ -32,34 +32,34 @@ const OrderList = ({ product }) => {
 
     return (
         <tbody>
-            <tr class="bg-white border">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+            <tr className="bg-white border">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                     {product.carName}
                 </th>
-                <td class="px-6 py-4">
+                <td className="px-6 py-4">
                     {product.carColor}
                 </td>
-                <td class="px-6 py-4">
+                <td className="px-6 py-4">
                     ${product.carPrice}
                 </td>
-                <td class="px-6 py-4">
+                <td className="px-6 py-4">
                     {product.userEmail}
                 </td>
-                <td class="px-6 py-4">
+                <td className="px-6 py-4">
                     {product.deliveryDate}
                 </td>
                 {
                     product.status === 'delivered' ?
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                             Delivered
                         </td>
                         :
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                             {product.status}
                         </td>
                 }
 
-                <td class="px-6 py-4 w-40 text-center">
+                <td className="px-6 py-4 w-40 text-center">
                     {
                         product.status === 'Pending' ?
                             <button onClick={handleSubmit} className='rounded-md border-gray-800 p-1 bg-gray-800 mx-2'>

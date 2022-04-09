@@ -155,7 +155,6 @@ const useFirebase = () => {
         const unsubscibed = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user);
-                console.log(user);
                 localStorage.setItem('loggedInUser', user.email);
             } else {
                 setUser({});
@@ -182,7 +181,6 @@ const useFirebase = () => {
         fetch(`https://auto-car-shop.herokuapp.com/users/admin/${user.email}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 setAdmin(data);
             })
     }, [user.email])

@@ -19,7 +19,7 @@ const ReviewCarousel = ({ review }) => {
             <ReactStars
                                 count={5}
                                 size={32}
-                                value= {review.reviewStar}
+                                value= {parseInt(review.reviewStar)}
                             edit= {false}
                             />
             </div>

@@ -185,7 +185,7 @@ const AddProduct = () => {
                         />
                     </div>
                 </div>
-                <button onClick={handleClick} class="py-2 px-3  text-sm text-white bg-gray-900 hover:bg-gray-700 rounded-full">
+                <button onClick={handleClick} className="py-2 px-3  text-sm text-white bg-gray-900 hover:bg-gray-700 rounded-full">
                     Add Product
                 </button>
             </div>

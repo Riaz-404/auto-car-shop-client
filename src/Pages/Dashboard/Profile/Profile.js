@@ -10,7 +10,6 @@ const Profile = () => {
         fetch(`https://auto-car-shop.herokuapp.com/users/${email}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 setLoggedInUser(data[0]);
             })
     }, [email])

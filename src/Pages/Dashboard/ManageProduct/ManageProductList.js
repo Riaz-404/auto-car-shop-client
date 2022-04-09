@@ -48,7 +48,6 @@ const ManageProductList = ({ car }) => {
                 window.location.reload(false);
                 notification("Success", "Product updated successfully", "green");
             })
-            .catch(err => console.log(err));
     }
 
     const handleRemoveButton = (e) => {
@@ -81,21 +80,21 @@ const ManageProductList = ({ car }) => {
                   onClick: () => {}
                 }
               ] ,     // Action after Cancel
-            overlayClassName: "overlay-custom-class-name"      // Custom overlay class name
+            overlayClassName: "overlay-custom-className-name"      // Custom overlay className name
           })
         
     };
 
     return (
         <React.Fragment>
-            <TableRow sx={{ '& > *': { borderBottom: 'unset' } }} class="bg-white border">
-                <TableCell scope="row" class="px-6 py-4">
-                    <img className='h-24 rounded-sm' src={`data:image/jpeg;base64,${car.image}`} alt="" srcset="" />
+            <TableRow sx={{ '& > *': { borderBottom: 'unset' } }} className="bg-white border">
+                <TableCell scope="row" className="px-6 py-4">
+                    <img className='h-24 rounded-sm' src={`data:image/jpeg;base64,${car.image}`} alt="" />
                 </TableCell>
-                <TableCell class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{car.name}</TableCell>
-                <TableCell class="px-6 py-4">${car.price}</TableCell>
-                <TableCell class="px-6 py-4">{car.fuelTypes}</TableCell>
-                <TableCell class="px-6 py-4">{car.deliveryTime}</TableCell>
+                <TableCell className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{car.name}</TableCell>
+                <TableCell className="px-6 py-4">${car.price}</TableCell>
+                <TableCell className="px-6 py-4">{car.fuelTypes}</TableCell>
+                <TableCell className="px-6 py-4">{car.deliveryTime}</TableCell>
                 <TableCell>
                     <button onClick={() => setOpen(!open)} className='rounded-md border-gray-800 p-1 bg-gray-800 mx-2'>
                         <EditIcon className='text-white' />
@@ -255,7 +254,7 @@ const ManageProductList = ({ car }) => {
                                         />
                                     </div>
                                 </div>
-                                <button onClick={handleUpdateButton} class="py-2 px-3 text-sm text-white bg-gray-900 hover:bg-gray-700 rounded-full">
+                                <button onClick={handleUpdateButton} className="py-2 px-3 text-sm text-white bg-gray-900 hover:bg-gray-700 rounded-full">
                                     Update Details
                                 </button>
                             </div>

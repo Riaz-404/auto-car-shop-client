@@ -19,9 +19,7 @@ const LoginForm = () => {
         e.preventDefault();
         loginWithEmail(formData.email, formData.password, location);
     }
-    const handleGoogleSignIn = () => {
-        console.log("clicked")
-        
+    const handleGoogleSignIn = () => {        
         signInWithGoogle(location);
     }
     return (
