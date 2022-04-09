@@ -7,7 +7,7 @@ import {
 } from '@heroicons/react/solid'
 import ReactStars from 'react-rating-stars-component';
 import fuelicon from "../../../Images/fuel-icon.ico"
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 
 
@@ -23,39 +23,48 @@ const CarsList = ({ car }) => {
     }
 
 
-    const {user} = useAuth();
+    const { user } = useAuth();
     const { _id, name, price, image, deliveryTime, fuelTypes } = car;
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const handleAddToCart = (e) => {
         e.preventDefault();
-        
-        const email = user.email;
-        const id = _id;
-        const color = 'White';
-        const startDate = new Date();
-        let addedMonth;
-        if(deliveryTime === 'Within a month') addedMonth = 1;
-        else if(deliveryTime === 'Within two months') addedMonth = 2;
-        else addedMonth = 3;
-        const deliveryDate = `${startDate.getDate()}/${startDate.getMonth()+1+addedMonth}/${startDate.getFullYear()}`;
-        const status = 'Pending';
-        fetch('http://localhost:8080/cart', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
+
+        if (user.email) {
+            const email = user.email;
+            const id = _id;
+            const color = 'White';
+            const startDate = new Date();
+            let addedMonth;
+            if (deliveryTime === 'Within a month') addedMonth = 1;
+            else if (deliveryTime === 'Within two months') addedMonth = 2;
+            else addedMonth = 3;
+            const deliveryDate = `${startDate.getDate()}/${startDate.getMonth() + 1 + addedMonth}/${startDate.getFullYear()}`;
+            const status = 'Pending';
+            fetch('http://localhost:8080/cart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({email, id, name, color, price, deliveryDate, status})
-                })
+                body: JSON.stringify({ email, id, name, color, price, deliveryDate, status })
+            })
                 .then(res => res.json())
                 .then(data => {
-                    if(data.insertedId){
+                    if (data.insertedId) {
                         notification("Success", "Order placed successfully", "green");
                     }
-                    else{
+                    else {
                         notification("Error", "Order failed", "red");
                     }
                 })
-        
+        }
+        else {
+            navigate("/login", { state: { from: location } });
+        }
+
+
+
 
     }
     return (
@@ -80,21 +89,21 @@ const CarsList = ({ car }) => {
                             {deliveryTime}
                         </div>
                         <div className="mt-2 flex items-center text-sm text-gray-500">
-                            
-                                <img className='flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400' src={fuelicon} alt="fuelicon"/>
-                                <p>{fuelTypes}</p>
-                            
-                        
+
+                            <img className='flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400' src={fuelicon} alt="fuelicon" />
+                            <p>{fuelTypes}</p>
+
+
                         </div>
                         <div className="mt-2 flex items-center text-sm text-gray-500">
                             <ReactStars
                                 count={5}
                                 size={24}
-                                value= {4.5}
-                            edit= {false}
+                                value={4.5}
+                                edit={false}
                             />
                         </div>
-                        
+
                     </div>
                 </div>
                 <div className="mt-5 flex lg:mt-0 lg:ml-4">

@@ -9,6 +9,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useAuth from '../../../../hooks/useAuth';
 import DetailsReview from './DetailsReview';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 
@@ -41,6 +42,9 @@ const Details = ({ id }) => {
     const [startDate, setStartDate] = useState(new Date());
     const [reviews, setReviews] = useState([]);
 
+    const location = useLocation();
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         fetch(`http://localhost:8080/cars/${id}`)
@@ -64,28 +68,35 @@ const Details = ({ id }) => {
     const handleAddToCart = (e) => {
         e.preventDefault();
 
-        const email = user.email;
-        const name = car.name;
-        const color = selectedColor.name;
-        const price = car.price;
-        const deliveryDate = `${startDate.getDate()}/${startDate.getMonth() + 1}/${startDate.getFullYear()}`;
-        const status = 'Pending';
-        fetch('http://localhost:8080/cart', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email, id, name, color, price, deliveryDate, status })
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.insertedId) {
-                    notification("Success", "Order placed successfully", "green");
-                }
-                else {
-                    notification("Error", "Order failed", "red");
-                }
+        if (user.email) {
+            const email = user.email;
+            const name = car.name;
+            const color = selectedColor.name;
+            const price = car.price;
+            const deliveryDate = `${startDate.getDate()}/${startDate.getMonth() + 1}/${startDate.getFullYear()}`;
+            const status = 'Pending';
+            fetch('http://localhost:8080/cart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, id, name, color, price, deliveryDate, status })
             })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.insertedId) {
+                        notification("Success", "Order placed successfully", "green");
+                    }
+                    else {
+                        notification("Error", "Order failed", "red");
+                    }
+                })
+        }
+        else {
+            navigate("/login", { state: { from: location } });
+        }
+
+
     }
 
     return (
