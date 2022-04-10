@@ -1,18 +1,32 @@
-# Getting Started with Create React App
+# Auto Car Shop
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Live Site](https://auto-car-shop-aaf9d.web.app/)\
+[Server Site](https://auto-car-shop.herokuapp.com/)
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+* For front-end development, React is used as library,
+* "Tailwind CSS", "Material UI" is used as CSS framework,
+*  "React Router" is used for routing,
+*  "Firebase" is used for Authentication and Web Hosting,
+*  "MongoDB" is used as Backend Data Server,
+*  "Express JS" is used as back end web application framework,
+*  "Heroku" is used as Backend Server
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* Modern UI
+* Product overview in Home page
+* User rating carousel
+* Contact and support section
+* Easy Signup and Login process
+* Third party authenticatiion like Google, Facebook, Github
+* Recover forget password
+* 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Secured Admin Panel
+
+Admin Panel is secured with react router authentication and firebase authencation. User needs to login their account before purchasing, checkout and giving reviews.
 
 ### `npm test`
 
