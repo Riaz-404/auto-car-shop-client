@@ -16,6 +16,7 @@
 ## Features
 
 * Modern UI
+* Responsive Design
 * Product overview in Home page
 * User rating carousel
 * Contact and support section
