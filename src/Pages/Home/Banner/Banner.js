@@ -1,9 +1,6 @@
 import React from 'react';
 import banner from "../../../Images/banner3.jpg"
 
-const styles = {
-    backgroundImage: `url(${banner})`,
-}
 
 const Banner = () => {
     return (
